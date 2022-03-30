@@ -1,0 +1,13 @@
+-- création d'une directory hadoop
+
+$ hdfs dfs -mkdir /Clients_ESTIA2122MAZOUZI
+
+-- ajout du fichier 
+$ hdfs dfs -put $MYTPHOME/Clients/clients/Clients_12.csv /Clients_ESTIA2122MAZOUZI
+
+--  Vérification de l'ajout.
+$ hdfs dfs -ls /Clients_ESTIA2122MAZOUZI
+-- Réponse : 
+--Found 2 items
+---rw-r--r--   1 MAZOUZI supergroup     3838135 2022-03-25 09:40 /Clients_ESTIA2122MAZOUZI/Clients_12.csv
+---rw-r--r--   1 MAZOUZI supergroup     3838324 2022-03-25 09:06 /Clients_ESTIA2122MAZOUZI/Clients_3.csv
