@@ -1,0 +1,12 @@
+-- création d'une directory hadoop
+
+$ hdfs dfs -mkdir /Catalogue_ESTIA2122MAZOUZI
+
+-- ajout du fichier 
+$ hdfs dfs -put $MYTPHOME/hdfscatalogue/catalogue/Catalogue.csv /Catalogue_ESTIA2122MAZOUZI
+
+--  Vérification de l'ajout.
+$ hdfs dfs -ls /Catalogue_ESTIA2122MAZOUZI
+-- Réponse : 
+--Found 1 items
+---rw-r--r--   1 oracle supergroup      14114 2022-03-24 09:24 /Catalogue_ESTIA2122MAZOUZI/Catalogue.csv
