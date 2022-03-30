@@ -1,0 +1,52 @@
+-- lancer Hive
+
+[oracle@bigdatalite ~]$ beeline
+Beeline version 1.1.0-cdh5.4.0 by Apache Hive
+
+-- Se connecter à HIVE
+
+beeline>   !connect jdbc:hive2://localhost:10000
+
+Enter username for jdbc:hive2://localhost:10000: oracle
+Enter password for jdbc:hive2://localhost:10000: ********
+(password : welcome1)
+
+-- créer la table externe HIVE pointant vers le fichier Immarticulations.csv
+
+-- table externe Hive IMMATRICULATION
+
+CREATE EXTERNAL TABLE IMMATRICULATION (
+IMMATRICULATION STRING,
+ MARQUE String,  
+ NOM String, 
+ PUISSANCE String
+ LONGUEUR String, 
+ NBPORTES String,
+ NBPLACES String, 
+ COULEUR String,
+ OCCASION String, 
+ PRIX String
+ )
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE LOCATION 'hdfs:/Immatriculations_ESTIA2122';
+
+
+-- Vérification de la table externe IMMATRICULATION dans HIVE
+
+jdbc:hive2://localhost:10000> SELECT COUNT(*) FROM IMMATRICULATION;
+
++----------+--+
+|   _c0    |
++----------+--+
+| 2000001  |
++----------+--+
+1 row selected (38.881 seconds)
+
+
+jdbc:hive2://localhost:10000> SELECT * FROM IMMATRICULATION WHERE IMMATRICULATION.IMMATRICULATION = '4719 JE 92';
+
++----------------------------------+-------------------------+----------------------+----------------------------+---------------------------+---------------------------+---------------------------+--------------------------+---------------------------+
+| immatriculation.immatriculation  | immatriculation.marque  | immatriculation.nom  | immatriculation.puissance  | immatriculation.longueur  | immatriculation.nbportes  | immatriculation.nbplaces  | immatriculation.couleur  | immatriculation.occasion  | 
++----------------------------------+-------------------------+----------------------+----------------------------+---------------------------+---------------------------+---------------------------+--------------------------+---------------------------+
+| 4719 JE 92                       | Jaguar                  | X-Type 2.5 V6        | 197                        | longue                    | 5                         | 5                         | noir                     | false                     |           
++----------------------------------+-------------------------+----------------------+----------------------------+---------------------------+---------------------------+---------------------------+--------------------------+---------------------------+ 
