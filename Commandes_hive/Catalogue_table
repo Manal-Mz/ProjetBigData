@@ -1,0 +1,48 @@
+-- lancer Hive
+
+[MAZOUZI@bigdatalite ~]$ beeline
+Beeline version 1.1.0-cdh5.4.0 by Apache Hive
+
+-- Se connecter à HIVE
+
+beeline>   !connect jdbc:hive2://localhost:10000
+
+Enter username for jdbc:hive2://localhost:10000: oracle
+Enter password for jdbc:hive2://localhost:10000: ********
+(password : welcome1)
+
+-- créer la table externe HIVE pointant vers le fichier Catalogue.csv
+
+-- table externe Hive CATALOGUE
+
+CREATE EXTERNAL TABLE CATALOGUE( 
+ MARQUE STRING,  
+ NOM STRING,
+ PUISSANCE  int,
+ LONGUEUR STRING, 
+ NBPORTES int, 
+ NBPLACES int, 
+ COULEUR STRING,
+ OCCASION STRING, 
+ PRIX INT
+ )
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE LOCATION 'hdfs:/Catalogue_ESTIA2122MAZOUZI'
+tblproperties ("skip.header.line.count"="1");
+
+
+
+-- Vérification de la table externe CATALOGUE dans HIVE
+
+
+jdbc:hive2://localhost:10000> SELECT COUNT(*) FROM CATALOGUE;
+
++------+--+
+| _c0  |
++------+--+
+| 270  |
++------+--+
+1 row selected (48.187 seconds)
+
+
+jdbc:hive2://localhost:10000> SELECT * FROM CATALOGUE WHERE CATALOGUE.MARQUE = 'Volkswagen';
