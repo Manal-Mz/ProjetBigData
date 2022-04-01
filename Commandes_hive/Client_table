@@ -1,0 +1,43 @@
+-- lancer Hive
+
+[MAZOUZI@bigdatalite ~]$ beeline
+Beeline version 1.1.0-cdh5.4.0 by Apache Hive
+
+-- Se connecter à HIVE
+
+beeline>   !connect jdbc:hive2://localhost:10000
+
+Enter username for jdbc:hive2://localhost:10000: oracle
+Enter password for jdbc:hive2://localhost:10000: ********
+(password : welcome1)
+
+-- créer la table externe HIVE pointant vers le fichier Clients_3.csv
+
+-- table externe Hive CLIENT3
+
+CREATE EXTERNAL TABLE CLIENT3(
+ AGE INT,
+ SEXE STRING, 
+ SITIUATIONFAMILIALE STRING, 
+ NBENFANTSACHARGE INT, 
+ 2EMEVOITURE STRING,
+ IMMATRICULATION STRING
+ )
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE LOCATION 'hdfs:/Clients_ESTIA2122MAZOUZI'
+tblproperties ("skip.header.line.count"="1");
+
+
+
+
+-- Vérification de la table externe CLIENT3 dans HIVE
+
+
+jdbc:hive2://localhost:10000> SELECT COUNT(*) FROM CLIENT3;
+
++------+--+
+| _c0  |
++------+--+
+|200000|
++------+--+
+1 row selected (65.286 seconds)
