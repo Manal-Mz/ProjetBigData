@@ -1,0 +1,15 @@
+- création d'une directory hadoop
+
+$ hdfs dfs -mkdir /Immatriculations_ESTIA2122MAZOUZI
+
+-- ajout du  fichier Immarticulations.csv dans hdfs
+
+
+-- ajout du fichier 
+$ hdfs dfs -put $MYTPHOME/nosqlimmatriculation/immatriculation/Immatriculations.csv /Immarticulations_ESTIA2122MAZOUZI
+
+--  Vérification de l'ajout.
+$ hdfs dfs -ls /Immarticulations_ESTIA2122MAZOUZI
+-- Réponse : 
+--Found 1 items
+---rw-r--r--   1 MAZOUZI supergroup  120957648 2022-03-24 07:51 /Immarticulations_ESTIA2122MAZOUZI/Immatriculations.csv
